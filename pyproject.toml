@@ -49,7 +49,7 @@ dependencies = [
 
 [tool.hatch.envs.lint]
 dependencies = [
-  "pylint"
+  "pylint>=3.3.8"
 ]
 
 [tool.hatch.envs.lint.scripts]

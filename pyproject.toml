@@ -34,7 +34,6 @@ include = [
 Homepage = "http://www.grantjenks.com/docs/wordsegment/"
 
 lint = ["pylint==1.6.4"]
-# build = ["wheel==0.29.0"]
 
 [tool.hatch.envs.dev]
 dependencies = [
@@ -44,7 +43,7 @@ dependencies = [
     "pylint==1.6.4",
     "Sphinx==1.5.1",
 ]
-features = ["docs", "test", "lint", "build"]
+features = ["docs", "test", "lint"]
 
 [tool.hatch.envs.test]
 dependencies = [

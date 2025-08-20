@@ -1,9 +1,12 @@
+import io
 import os
 import sys
+from contextlib import redirect_stdout
+
+from wordsegment import (BIGRAMS, UNIGRAMS, WORDS, clean, isegment, load, main,
+                         segment)
+
 from .context import wordsegment
-from wordsegment import (
-    clean, load, main, isegment, segment, UNIGRAMS, BIGRAMS, WORDS,
-)
 
 load()
 
@@ -94,9 +97,11 @@ def test_segment_12():
     assert segment(''.join(result)) == result
 
 def test_main():
-    main(['tests/test.txt'])
+    f = io.StringIO()
+    with redirect_stdout(f):
+        main(['tests/test.txt'])
     result = os.linesep.join(('choose spain', 'this is a test')) + os.linesep
-    assert sys.stdout.getvalue() == result
+    assert f.getvalue() == result
 
 def test_words():
     assert len(WORDS) > 0

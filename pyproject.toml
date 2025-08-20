@@ -35,17 +35,29 @@ Homepage = "http://www.grantjenks.com/docs/wordsegment/"
 
 [tool.hatch.envs.dev]
 dependencies = [
-    "pytest",
-    "coverage==4.2",
     "tox==2.5.0"
 ]
 features = ["docs", "test"]
 
 [tool.hatch.envs.test]
+matrix = [
+  { python = ["3.7"] },
+  { python = ["3.8"] },
+  { python = ["3.9"] },
+  { python = ["3.10"] },
+  { python = ["3.11"] },
+  { python = ["3.12"] },
+  { python = ["3.13"] },
+]
 dependencies = [
     "pytest",
-    "coverage==4.2"
+    "coverage"
 ]
+
+[tool.hatch.envs.test.scripts]
+test = "pytest"
+cover = "coverage run -m pytest"
+
 
 [tool.hatch.envs.lint]
 dependencies = [

@@ -27,6 +27,7 @@ Original Copyright (c) 2008-2009 by Peter Norvig
 """
 
 import io
+from functools import lru_cache
 import math
 import os.path as op
 import sys
@@ -63,6 +64,7 @@ class Segmenter(object):
         self.words = []
 
 
+    @lru_cache(maxsize=1)
     def load(self):
         "Load unigram and bigram counts from disk."
         self.unigrams.update(self.parse(self.UNIGRAMS_FILENAME))
@@ -117,6 +119,7 @@ class Segmenter(object):
 
 
     def isegment(self, text):
+        self.load()  # Ensure data is loaded on demand
         "Return iterator of words that is the best segmenation of `text`."
         memo = dict()
 
@@ -163,6 +166,7 @@ class Segmenter(object):
 
 
     def segment(self, text):
+        self.load()  # Ensure data is loaded on demand
         "Return list of words that is the best segmenation of `text`."
         return list(self.isegment(text))
 

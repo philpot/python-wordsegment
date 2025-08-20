@@ -41,7 +41,6 @@ dependencies = [
     "coverage==4.2",
     "tox==2.5.0",
     "pylint==1.6.4",
-    "Sphinx==1.5.1",
 ]
 features = ["docs", "test", "lint"]
 
@@ -50,3 +49,11 @@ dependencies = [
     "pytest",
     "coverage==4.2"
 ]
+
+[tool.hatch.envs.docs]
+dependencies = [
+    "Sphinx>=7.0.0"
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "sphinx-build -b html docs docs/_build/html"

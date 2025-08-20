@@ -33,22 +33,27 @@ include = [
 [project.urls]
 Homepage = "http://www.grantjenks.com/docs/wordsegment/"
 
-lint = ["pylint==1.6.4"]
-
 [tool.hatch.envs.dev]
 dependencies = [
     "pytest",
     "coverage==4.2",
-    "tox==2.5.0",
-    "pylint==1.6.4",
+    "tox==2.5.0"
 ]
-features = ["docs", "test", "lint"]
+features = ["docs", "test"]
 
 [tool.hatch.envs.test]
 dependencies = [
     "pytest",
     "coverage==4.2"
 ]
+
+[tool.hatch.envs.lint]
+dependencies = [
+  "pylint"
+]
+
+[tool.hatch.envs.lint.scripts]
+lint = "pylint wordsegment"
 
 [tool.hatch.envs.docs]
 dependencies = [
